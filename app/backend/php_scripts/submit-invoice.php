@@ -1,23 +1,9 @@
 <?php
 include '../configs/config.php';
-// include '../core/Helpers.php';
-// spl_autoload_register("autoload");
 include '../core/Config.php';
 include '../core/Database.php';
 include '../classes/Validation.php';
 include '../classes/Invoice.php';
-// include '../controllers/invoice_controllers/CustomerController.php';
-
-// $jsonInput = file_get_contents("php://input");
-// $data = json_decode($jsonInput, true);
-// var_dump($data);
-// var_dump($_POST);
-
-// // Perform processing, validation, and database interactions here
-
-// $response = array("message" => "Registration successful");
-// echo json_encode($response);
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -81,17 +67,10 @@ foreach ($_POST['misc'] as $miscArr)
     }
 }
 
-//         echo '<pre> validation:';
-//         print_r($validation -> errors());
-//         echo  '</pre>';
-
 $response = $response . '</div>';
 if ($validation ->getShowErrors()) {
     $validation -> showErrors($response);
     } else {
-        // echo '<pre>';
-        // print_r($_POST);
-        // echo '</pre>';
         if ($submitInvoice = $invoice -> createInvoice($_POST)) echo "success";
     }
 
